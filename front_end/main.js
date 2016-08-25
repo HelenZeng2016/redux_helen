@@ -1,13 +1,23 @@
 'use strict';
 
-require("./sass/test.sass");
+require("./counter/sass/test.sass");
 
-import 'babel-polyfill'
+import 'babel-polyfill';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Root from './root';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import Counter from './counter/containers/counter';
+import reduces from './counter/reducers/counter'
 
-let element = document.getElementById('root');
+const store = createStore(reduces);
+const element = document.getElementById('root');
+
 if (element) {
-  ReactDOM.render(<Root />, element)
+  ReactDOM.render(
+    <Provider store={store}>
+      <Counter />
+    </Provider>,
+    element
+  )
 }
