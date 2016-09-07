@@ -8,12 +8,13 @@ export default class Root extends Component {
   }
 
   render() {
+    console.log('render react_redux');
+
     const {incrementCount, decrementCount, counter} = this.props;
-    console.log(incrementCount);
-    console.log(counter);
+    console.log(this.props.counter);
+    
     return (
       <div className="container">
-        <div className="text">Hello Redux</div>
         <div className='counter'>
           <p>
             Clicked: {counter} times

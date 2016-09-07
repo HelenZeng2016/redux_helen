@@ -67,26 +67,26 @@
 
 	var _reactRedux = __webpack_require__(482);
 
-	var _counter = __webpack_require__(491);
+	var _root = __webpack_require__(491);
 
-	var _counter2 = _interopRequireDefault(_counter);
+	var _root2 = _interopRequireDefault(_root);
 
-	var _counter3 = __webpack_require__(495);
+	var _index = __webpack_require__(498);
 
-	var _counter4 = _interopRequireDefault(_counter3);
+	var _index2 = _interopRequireDefault(_index);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(496);
+	__webpack_require__(502);
 
-	var store = (0, _redux.createStore)(_counter4.default);
+	var store = (0, _redux.createStore)(_index2.default);
 	var element = document.getElementById('root');
 
 	if (element) {
 	  _reactDom2.default.render(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
-	    _react2.default.createElement(_counter2.default, null)
+	    _react2.default.createElement(_root2.default, null)
 	  ), element);
 	}
 
@@ -15405,7 +15405,7 @@
 	  // batch. Otherwise, if dirtyComponents is [A, B] where A has children B and
 	  // C, B could update twice in a single batch if C's render enqueues an update
 	  // to B (since B would have already updated, we should skip it, and the only
-	  // way we can know to do so is by checking the batch counter).
+	  // way we can know to do so is by checking the batch react_redux).
 	  updateBatchNumber++;
 
 	  for (var i = 0; i < len; i++) {
@@ -30946,6 +30946,64 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(299);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _counter = __webpack_require__(492);
+
+	var _counter2 = _interopRequireDefault(_counter);
+
+	var _info_list = __webpack_require__(496);
+
+	var _info_list2 = _interopRequireDefault(_info_list);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Root = function (_Component) {
+	  _inherits(Root, _Component);
+
+	  function Root() {
+	    _classCallCheck(this, Root);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Root).apply(this, arguments));
+	  }
+
+	  _createClass(Root, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_counter2.default, null),
+	        _react2.default.createElement(_info_list2.default, null)
+	      );
+	    }
+	  }]);
+
+	  return Root;
+	}(_react.Component);
+
+	exports.default = Root;
+
+/***/ },
+/* 492 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(299);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -30954,11 +31012,11 @@
 
 	var _reactRedux = __webpack_require__(482);
 
-	var _root = __webpack_require__(492);
+	var _root = __webpack_require__(493);
 
 	var _root2 = _interopRequireDefault(_root);
 
-	var _action = __webpack_require__(493);
+	var _action = __webpack_require__(494);
 
 	var actions = _interopRequireWildcard(_action);
 
@@ -30967,26 +31025,29 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function mapStateToProps(state) {
+
 	  return {
-	    counter: state
+	    counter: state.counter
 	  };
 	}
 
 	function mapDispatchToProps(dispatch) {
-	  return {
-	    incrementCount: function incrementCount() {
-	      dispatch(actions.incrementCount());
-	    },
-	    decrementCount: function decrementCount() {
-	      dispatch(actions.decrementCount());
-	    }
-	  };
+	  return (0, _redux.bindActionCreators)(actions, dispatch);
+
+	  // {
+	  // incrementCount: () => {
+	  //   dispatch(actions.incrementCount());
+	  // },
+	  // decrementCount: () => {
+	  //   dispatch(actions.decrementCount());
+	  // }
+	  // };
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_root2.default);
 
 /***/ },
-/* 492 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31021,21 +31082,18 @@
 	  _createClass(Root, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log('render react_redux');
+
 	      var _props = this.props;
 	      var incrementCount = _props.incrementCount;
 	      var decrementCount = _props.decrementCount;
 	      var counter = _props.counter;
 
-	      console.log(incrementCount);
-	      console.log(counter);
+	      console.log(this.props.counter);
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'text' },
-	          'Hello Redux'
-	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'counter' },
@@ -31069,7 +31127,7 @@
 	exports.default = Root;
 
 /***/ },
-/* 493 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31079,8 +31137,12 @@
 	});
 	exports.incrementCount = incrementCount;
 	exports.decrementCount = decrementCount;
+	exports.initInfo = initInfo;
+	exports.addInfo = addInfo;
+	exports.deleteInfo = deleteInfo;
+	exports.updateInfo = updateInfo;
 
-	var _action_type = __webpack_require__(494);
+	var _action_type = __webpack_require__(495);
 
 	var actionType = _interopRequireWildcard(_action_type);
 
@@ -31100,8 +31162,38 @@
 	  };
 	}
 
+	//info Action
+
+	function initInfo(info) {
+	  return {
+	    type: actionType.INIT_INFO,
+	    data: info
+	  };
+	}
+
+	function addInfo(info) {
+	  return {
+	    type: actionType.ADD_INFO,
+	    data: info
+	  };
+	}
+
+	function deleteInfo(info) {
+	  return {
+	    type: actionType.DELETE_INFO,
+	    data: info
+	  };
+	}
+
+	function updateInfo(info) {
+	  return {
+	    type: actionType.UPDATE_INFO,
+	    data: info
+	  };
+	}
+
 /***/ },
-/* 494 */
+/* 495 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31113,8 +31205,135 @@
 
 	var DECREMENT = exports.DECREMENT = 'DECREMENT';
 
+	var INIT_INFO = exports.INIT_INFO = "INIT_INFO";
+
+	var ADD_INFO = exports.ADD_INFO = "ADD_INFO";
+
+	var DELETE_INFO = exports.DELETE_INFO = "DELETE_INFO";
+
+	var UPDATE_INFO = exports.UPDATE_INFO = "UPDATE_INFO";
+
 /***/ },
-/* 495 */
+/* 496 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(299);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(482);
+
+	var _student_info = __webpack_require__(497);
+
+	var _student_info2 = _interopRequireDefault(_student_info);
+
+	var _action = __webpack_require__(494);
+
+	var actions = _interopRequireWildcard(_action);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function mapStateToProps(state) {
+	  return {
+	    stuInfo: state.info
+	  };
+	}
+
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    initInfo: function initInfo() {
+	      dispatch(actions.initInfo());
+	    }
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_student_info2.default);
+
+/***/ },
+/* 497 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(299);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var StudentInfo = function (_Component) {
+	  _inherits(StudentInfo, _Component);
+
+	  function StudentInfo(props) {
+	    _classCallCheck(this, StudentInfo);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(StudentInfo).call(this, props));
+	  }
+
+	  _createClass(StudentInfo, [{
+	    key: 'render',
+	    value: function render() {
+	      // console.log(this.props.stuInfo);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Student Information'
+	      );
+	    }
+	  }]);
+
+	  return StudentInfo;
+	}(_react.Component);
+
+	exports.default = StudentInfo;
+
+/***/ },
+/* 498 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _redux = __webpack_require__(469);
+
+	var _counter = __webpack_require__(499);
+
+	var _counter2 = _interopRequireDefault(_counter);
+
+	var _info = __webpack_require__(500);
+
+	var _info2 = _interopRequireDefault(_info);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var RootReducer = (0, _redux.combineReducers)({ counter: _counter2.default, info: _info2.default });
+	exports.default = RootReducer;
+
+/***/ },
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31124,7 +31343,7 @@
 	});
 	exports.default = counter;
 
-	var _action_type = __webpack_require__(494);
+	var _action_type = __webpack_require__(495);
 
 	var actionType = _interopRequireWildcard(_action_type);
 
@@ -31145,23 +31364,73 @@
 	}
 
 /***/ },
-/* 496 */
+/* 500 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = info;
+
+	var _action_type = __webpack_require__(495);
+
+	var actionType = _interopRequireWildcard(_action_type);
+
+	var _info_json = __webpack_require__(501);
+
+	var _info_json2 = _interopRequireDefault(_info_json);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function info() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? { stuInfo: [] } : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case actionType.INIT_INFO:
+	      var information = void 0;
+	      for (var i = 0; i < _info_json2.default.length; i++) {
+	        information = _info_json2.default[i];
+	        state.stuInfo.push(information);
+	      }
+	      return { stuInfo: [].concat(_toConsumableArray(state.stuInfo)) };
+	    default:
+	      return state;
+	  }
+	}
+
+/***/ },
+/* 501 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = [{ name: 'Jane', course_score: [{ math: 70, english: 90, computer: 85 }] }, { name: 'Helen', course_score: [{ math: 85, english: 80, computer: 85 }] }, { name: 'Cruze', course_score: [{ math: 85, english: 75, computer: 90 }] }];
+
+/***/ },
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(497);
+	var content = __webpack_require__(503);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(499)(content, {});
+	var update = __webpack_require__(505)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./test.sass", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./test.sass");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.sass", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.sass");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -31171,21 +31440,21 @@
 	}
 
 /***/ },
-/* 497 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(498)();
+	exports = module.exports = __webpack_require__(504)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "body {\n  margin: 0 auto; }\n\n.container {\n  text-align: center; }\n\n.text {\n  color: #0f0f0f;\n  font-size: 32px;\n  font-weight: 600;\n  margin: 50px 0; }\n", ""]);
+	exports.push([module.id, "body {\n  margin: 0 auto;\n  color: #4f4f4f; }\n\n::selection {\n  background-color: #4f4f4f;\n  color: #fff; }\n\n::-moz-selection {\n  background-color: #4f4f4f;\n  color: #fff; }\n\n::-webkit-keygen-select {\n  background-color: #4f4f4f;\n  color: #fff; }\n\nh1 {\n  margin: 50px 0;\n  text-align: center;\n  text-transform: uppercase; }\n\n.container {\n  text-align: center; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 498 */
+/* 504 */
 /***/ function(module, exports) {
 
 	/*
@@ -31241,7 +31510,7 @@
 
 
 /***/ },
-/* 499 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
